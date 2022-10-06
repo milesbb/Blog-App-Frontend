@@ -42,12 +42,13 @@ const BlogList = (props) => {
         <>
           {blogPosts.map((blogPost, i) => (
             <Col
+              key={i}
               md={4}
               style={{
                 marginBottom: 50,
               }}
             >
-              <BlogItem key={i} post={blogPost} />
+              <BlogItem post={blogPost} />
             </Col>
           ))}
         </>
