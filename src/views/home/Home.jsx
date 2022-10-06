@@ -42,9 +42,12 @@ const Home = (props) => {
         <Alert variant="info">No authors found</Alert>
       }
       {!loading && !errorOccurred && authors.length > 0 && (
+        <>
+        <h4>Authors</h4>
         <ul>
           {authors.map((author, i) => <li key={i}>{author.name + " " + author.surname}</li>)}
         </ul>
+        </>
       )}
 
       <BlogList />
