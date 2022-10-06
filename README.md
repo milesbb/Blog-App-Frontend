@@ -1,5 +1,5 @@
-# Strive Blog Template
+# React Strive Blog Template
 
-- ✅ react-router-dom is updated
-- ✅ class components converted to functional components
-- ✅ components re-named
+Link to non-template backend:
+
+https://github.com/milesbb/BE-WK1-D4-Backend
