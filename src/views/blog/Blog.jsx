@@ -40,7 +40,7 @@ const Blog = (props) => {
       <Container>
         {loading && <Spinner animation="border" role="status"></Spinner>}
         {!loading && errorOccurred && (
-          <Alert variant="danger">Error occurred when fetching authors</Alert>
+          <Alert variant="danger">Error occurred when loading blog content</Alert>
         )}
         {!loading && !errorOccurred && blog === null && (
           <Alert variant="danger">Failed to load blog</Alert>
