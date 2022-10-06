@@ -11,7 +11,7 @@ const Home = (props) => {
   const getAuthors = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:3004/authors");
+      const response = await fetch("http://localhost:3001/authors");
       if (response.ok) {
         const authors = await response.json();
         console.log(authors)
@@ -43,7 +43,7 @@ const Home = (props) => {
       }
       {!loading && !errorOccurred && authors.length > 0 && (
         <ul>
-          {authors.map(author => <li>{authors.name}</li>)}
+          {authors.map((author, i) => <li key={i}>{author.name + " " + author.surname}</li>)}
         </ul>
       )}
 
