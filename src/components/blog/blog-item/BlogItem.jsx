@@ -8,7 +8,7 @@ const BlogItem = ({ post }) => {
   return (
     <Link to={`/blog/${post._id}`} className="blog-link">
       <Card className="blog-card">
-        <Card.Img variant="top" src={post.cover} className="blog-cover" />
+        <Card.Img variant="top" src={post.cover.includes("public") ? "http://localhost:3001" + post.cover : post.cover}  className="blog-cover" />
         <Card.Body>
           <Card.Title>{post.title}</Card.Title>
           <Card.Text>{"Category: " + post.category}</Card.Text>
