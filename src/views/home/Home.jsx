@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Container, Spinner } from "react-bootstrap";
+import { Alert, Container, Image, Spinner } from "react-bootstrap";
 import BlogList from "../../components/blog/blog-list/BlogList";
 import "./styles.css";
 
@@ -45,7 +45,7 @@ const Home = (props) => {
         <>
         <h4>Authors</h4>
         <ul>
-          {authors.map((author, i) => <li key={i}>{author.name + " " + author.surname}</li>)}
+          {authors.map((author, i) => <li key={i}><Image alt="profile pic" src={author.avatar.includes("ui-avatars") ? author.avatar : "http://localhost:3001" + author.avatar} />{author.name + " " + author.surname}</li>)}
         </ul>
         </>
       )}
