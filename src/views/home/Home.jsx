@@ -45,7 +45,7 @@ const Home = (props) => {
         <>
         <h4>Authors</h4>
         <ul>
-          {authors.map((author, i) => <li key={i}><Image alt="profile pic" style={{width: "2rem", borderRadius: "50%"}} src={author.avatar.includes("public") ? "http://localhost:3001" + author.avatar : author.avatar} />{author.name + " " + author.surname}</li>)}
+          {authors.map((author, i) => <li key={i}><Image alt="profile pic" style={{width: "2rem", height: "2rem", borderRadius: "50%"}} src={author.avatar.includes("public") ? "http://localhost:3001" + author.avatar : author.avatar} />{author.name + " " + author.surname}</li>)}
         </ul>
         </>
       )}
