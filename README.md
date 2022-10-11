@@ -1,5 +1,5 @@
-# React Strive Blog Template
+# React Blog App
 
-Link to non-template backend:
+Link to backend:
 
 https://github.com/milesbb/BE-WK2-D2-BE-Cloud.git
