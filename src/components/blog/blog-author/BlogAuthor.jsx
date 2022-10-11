@@ -32,9 +32,7 @@ const BlogAuthor = ({ author, authorsArray }) => {
           <Image
             className="blog-author"
             src={
-              currentAuthor.avatar.includes("public")
-                ? "http://localhost:3001" + currentAuthor.avatar
-                : currentAuthor.avatar
+              currentAuthor.avatar
             }
             roundedCircle
           />

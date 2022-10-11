@@ -10,7 +10,7 @@ const BlogList = ({ authors }) => {
   const getBlogPosts = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:3001/blogPosts");
+      const response = await fetch(process.env.BE_URL + "/blogPosts");
       if (response.ok) {
         const blogPosts = await response.json();
         console.log(blogPosts);

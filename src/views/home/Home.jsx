@@ -24,7 +24,7 @@ const Home = ({ sendAuthorsArray }) => {
   const getAuthors = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:3001/authors");
+      const response = await fetch(process.env.BE_URL + "/authors");
       if (response.ok) {
         const authorsLoaded = await response.json();
         console.log("LOADING AUTHORS");
@@ -54,7 +54,7 @@ const Home = ({ sendAuthorsArray }) => {
 
     try {
       const imgPostResponse = await fetch(
-        "http://localhost:3001/authors/" + currentUserId + "/uploadAvatar",
+        process.env.BE_URL + "/authors/" + currentUserId + "/uploadAvatar",
         {
           method: "POST",
           body: postImgFormData,
@@ -132,9 +132,7 @@ const Home = ({ sendAuthorsArray }) => {
                           borderRadius: "50%",
                         }}
                         src={
-                          author.avatar.includes("public")
-                            ? "http://localhost:3001" + author.avatar
-                            : author.avatar
+                          author.avatar
                         }
                       />
                     </div>

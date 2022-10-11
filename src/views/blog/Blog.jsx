@@ -32,7 +32,7 @@ const Blog = ({ authorsArray }) => {
   const getBlog = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:3001/blogPosts/" + blogId);
+      const response = await fetch(process.env.BE_URL + "/blogPosts/" + blogId);
       if (response.ok) {
         const blog = await response.json();
         console.log(blog);
@@ -67,7 +67,7 @@ const Blog = ({ authorsArray }) => {
 
     try {
       const commentResponse = await fetch(
-        "http://localhost:3001/blogPosts/" + blogId + "/comments",
+        process.env.BE_URL + "/blogPosts/" + blogId + "/comments",
         config
       );
       if (commentResponse.ok) {
@@ -127,9 +127,7 @@ const Blog = ({ authorsArray }) => {
             <Image
               className="blog-details-cover"
               src={
-                blog.cover.includes("public")
-                  ? "http://localhost:3001" + blog.cover
-                  : blog.cover
+                blog.cover
               }
               fluid
             />

@@ -11,9 +11,7 @@ const BlogItem = ({ post, authors }) => {
         <Card.Img
           variant="top"
           src={
-            post.cover.includes("public")
-              ? "http://localhost:3001" + post.cover
-              : post.cover
+            post.cover
           }
           className="blog-cover"
         />
