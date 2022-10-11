@@ -32,7 +32,7 @@ const Blog = ({ authorsArray }) => {
   const getBlog = async () => {
     setLoading(true);
     try {
-      const response = await fetch(process.env.BE_URL + "/blogPosts/" + blogId);
+      const response = await fetch(process.env.BE_URL_2 + "/blogPosts/" + blogId);
       if (response.ok) {
         const blog = await response.json();
         console.log(blog);
@@ -67,7 +67,7 @@ const Blog = ({ authorsArray }) => {
 
     try {
       const commentResponse = await fetch(
-        process.env.BE_URL + "/blogPosts/" + blogId + "/comments",
+        process.env.BE_URL_2 + "/blogPosts/" + blogId + "/comments",
         config
       );
       if (commentResponse.ok) {
