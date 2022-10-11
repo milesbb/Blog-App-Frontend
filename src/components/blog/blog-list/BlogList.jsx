@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Alert, Col, Row, Spinner } from "react-bootstrap";
 import BlogItem from "../blog-item/BlogItem";
 
-const BlogList = (props) => {
+const BlogList = ({ authors }) => {
   const [loading, setLoading] = useState(false);
   const [errorOccurred, setErrorOccured] = useState(false);
   const [blogPosts, setBlogPosts] = useState([]);
@@ -38,7 +38,7 @@ const BlogList = (props) => {
       {!loading && !errorOccurred && blogPosts.length === 0 && (
         <Alert variant="info">No blog posts yet</Alert>
       )}
-      {!loading && !errorOccurred && blogPosts.length > 0 && (
+      {!loading && !errorOccurred && authors && blogPosts.length > 0 && (
         <>
           {blogPosts.map((blogPost, i) => (
             <Col
@@ -48,7 +48,7 @@ const BlogList = (props) => {
                 marginBottom: 50,
               }}
             >
-              <BlogItem post={blogPost} />
+              <BlogItem post={blogPost} authors={authors} />
             </Col>
           ))}
         </>

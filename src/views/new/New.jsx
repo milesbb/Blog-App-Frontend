@@ -8,7 +8,7 @@ const NewBlogPost = (props) => {
   const [text, setText] = useState("");
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
-  const [cover, setCover] = useState("");
+  const [imgData, setImgData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [errorOccurred, setErrorOccurred] = useState(false);
   const [postSuccess, setPostSuccess] = useState(false);
@@ -17,10 +17,16 @@ const NewBlogPost = (props) => {
     setPostSuccess(false);
     setErrorOccurred(false);
     setLoading(true);
+
+    const postImgFormData = new FormData();
+    if (imgData !== null) {
+      postImgFormData.append("cover", imgData);
+    }
+
     const blogPost = {
       category: category,
       title: title,
-      cover: cover,
+      cover: "https://ui-avatars.com/api/?name=ER+ER",
       readTime: {
         value: 2,
         unit: "minute",
@@ -43,7 +49,19 @@ const NewBlogPost = (props) => {
     try {
       const response = await fetch("http://localhost:3001/blogPosts", config);
       if (response.ok) {
-        setPostSuccess(true);
+        const blogPostResponse = await response.json();
+        const imgPostResponse = await fetch(
+          "http://localhost:3001/blogPosts/" + blogPostResponse._id + "/uploadCover",
+          {
+            method: 'POST',
+            body: postImgFormData,
+          }
+        );
+        if (imgPostResponse.ok) {
+          setPostSuccess(true);
+        } else {
+          setErrorOccurred(true);
+        }
       } else {
         setErrorOccurred(true);
       }
@@ -51,12 +69,11 @@ const NewBlogPost = (props) => {
       setErrorOccurred(true);
     } finally {
       setLoading(false);
-      setText("")
-      setCategory("")
-      setCover("")
-      setTitle("")
-      infoTimeoutFunc(3000)
-      
+      setText("");
+      setCategory("");
+      setImgData("");
+      setTitle("");
+      infoTimeoutFunc(3000);
     }
   };
 
@@ -76,11 +93,11 @@ const NewBlogPost = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (text && category && title && cover) {
+    if (text && category && title && imgData) {
       postBlogPost();
     } else {
       setErrorOccurred(true);
-      infoTimeoutFunc(2000)
+      infoTimeoutFunc(2000);
     }
   };
 
@@ -110,13 +127,12 @@ const NewBlogPost = (props) => {
           />
         </Form.Group>
         <Form.Group controlId="blog-category" className="mt-3">
-          <Form.Label>Post Cover URL</Form.Label>
-          <Form.Control
-            size="lg"
-            placeholder="Post Cover URL"
-            value={cover}
+          <Form.Label>Post Cover Image</Form.Label>
+          <Form.File
+            required
+            name="file"
             onChange={(e) => {
-              setCover(e.target.value);
+              setImgData(e.target.files[0]);
             }}
           />
         </Form.Group>

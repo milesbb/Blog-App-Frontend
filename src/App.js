@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "./components/navbar/BlogNavbar";
 import Footer from "./components/footer/Footer";
 import Home from "./views/home/Home";
@@ -7,12 +7,18 @@ import NewBlogPost from "./views/new/New";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
+  const [authorsArray, setAuthorsArray] = useState([])
+
+  const sendAuthorsArray = (array) => {
+    setAuthorsArray(array)
+  }
+
   return (
     <Router>
       <NavBar />
       <Routes>
-        <Route path="/" exact element={<Home />} />
-        <Route path="/blog/:id" element={<Blog />} />
+        <Route path="/" exact element={<Home sendAuthorsArray={sendAuthorsArray} />} />
+        <Route path="/blog/:id" element={<Blog authorsArray={authorsArray} />} />
         <Route path="/new" element={<NewBlogPost />} />
       </Routes>
       <Footer />
