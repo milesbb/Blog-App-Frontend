@@ -47,11 +47,11 @@ const NewBlogPost = (props) => {
     };
 
     try {
-      const response = await fetch(process.env.BE_URL_2 + "/blogPosts", config);
+      const response = await fetch(process.env.REACT_APP_BE_URL + "/blogPosts", config);
       if (response.ok) {
         const blogPostResponse = await response.json();
         const imgPostResponse = await fetch(
-          process.env.BE_URL_2 + "/blogPosts/" + blogPostResponse._id + "/cloudinary",
+          process.env.REACT_APP_BE_URL + "/blogPosts/" + blogPostResponse._id + "/cloudinary",
           {
             method: 'POST',
             body: postImgFormData,

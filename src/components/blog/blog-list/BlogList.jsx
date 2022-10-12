@@ -10,7 +10,7 @@ const BlogList = ({ authors }) => {
   const getBlogPosts = async () => {
     setLoading(true);
     try {
-      const response = await fetch(process.env.BE_URL_2 + "/blogPosts");
+      const response = await fetch(process.env.REACT_APP_BE_URL + "/blogPosts");
       if (response.ok) {
         const blogPosts = await response.json();
         console.log(blogPosts);

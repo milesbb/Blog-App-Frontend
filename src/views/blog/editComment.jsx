@@ -33,7 +33,7 @@ const EditComment = ({ blogId, commentId, getBlog}) => {
 
     try {
       const commentResponse = await fetch(
-        process.env.BE_URL_2 + "/blogPosts/" + blogId + "/comments/" + commentId,
+        process.env.REACT_APP_BE_URL + "/blogPosts/" + blogId + "/comments/" + commentId,
         config
       );
       if (commentResponse.ok) {
