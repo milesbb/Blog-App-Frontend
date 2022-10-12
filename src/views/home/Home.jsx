@@ -54,10 +54,13 @@ const Home = ({ sendAuthorsArray }) => {
 
     try {
       const imgPostResponse = await fetch(
-        process.env.REACT_APP_BE_URL + "/authors/" + currentUserId + "/uploadAvatar",
+        process.env.REACT_APP_BE_URL + "/authors/" + currentUserId + "/cloudinary",
         {
           method: "POST",
           body: postImgFormData,
+          headers: {
+            "X-API-KEY": "392859513733232"
+          }
         }
       );
       if (imgPostResponse.ok) {

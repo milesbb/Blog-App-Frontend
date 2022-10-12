@@ -55,6 +55,9 @@ const NewBlogPost = (props) => {
           {
             method: 'POST',
             body: postImgFormData,
+            headers: {
+              "X-API-KEY": "392859513733232"
+            }
           }
         );
         if (imgPostResponse.ok) {
