@@ -88,6 +88,19 @@ const Blog = ({ authorsArray }) => {
     }
   };
 
+  const blogPostPdf = async () => {
+    try {
+      const blogPostPdfResponse = await fetch(
+        process.env.REACT_APP_BE_URL + "/blogPosts/" + blogId + "/pdf"
+      );
+      if (blogPostPdfResponse.ok) {
+        console.log("pdf successfully created");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getBlog();
   }, []);
@@ -151,6 +164,7 @@ const Blog = ({ authorsArray }) => {
                 __html: blog.content,
               }}
             ></div>
+            <Button onClick={blogPostPdf}>Create Blog Post PDF</Button>
             <div>
               <h4>Comments</h4>
               <div style={{ background: "white", borderRadius: "5px" }}>
