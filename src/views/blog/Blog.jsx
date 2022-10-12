@@ -32,7 +32,9 @@ const Blog = ({ authorsArray }) => {
   const getBlog = async () => {
     setLoading(true);
     try {
-      const response = await fetch(process.env.REACT_APP_BE_URL + "/blogPosts/" + blogId);
+      const response = await fetch(
+        process.env.REACT_APP_BE_URL + "/blogPosts/" + blogId
+      );
       if (response.ok) {
         const blog = await response.json();
         console.log(blog);
@@ -124,13 +126,7 @@ const Blog = ({ authorsArray }) => {
         )}
         {!loading && !errorOccurred && blog !== null && (
           <>
-            <Image
-              className="blog-details-cover"
-              src={
-                blog.cover
-              }
-              fluid
-            />
+            <Image className="blog-details-cover" src={blog.cover} fluid />
             <h1 className="blog-details-title">{blog.title}</h1>
 
             <div className="blog-details-container">
@@ -155,90 +151,92 @@ const Blog = ({ authorsArray }) => {
                 __html: blog.content,
               }}
             ></div>
-            {blog.comments && (
-              <div>
-                <h4>Comments</h4>
-                <div style={{ background: "white", borderRadius: "5px" }}>
-                  <Container className="p-1">
-                    {blog.comments.map((comment, i) => (
-                      <Row key={i} className="my-2 w-75 d-flex">
-                        <div
-                          style={{ background: "white", borderRadius: "5px" }}
-                        >
-                          {comment.name + ": " + comment.text}
-                        </div>
-
-                        <div>
-                          <EditComment
-                            blogId={blog._id}
-                            commentId={comment._id}
-                            getBlog={getBlog}
-                          />
-                          <DeleteComment
-                            blogId={blog._id}
-                            commentId={comment._id}
-                            getBlog={getBlog}
-                          />
-                        </div>
-                      </Row>
-                    ))}
-                    <Row style={{ background: "white", borderRadius: "5px" }}>
-                      <h5 className="mt-5">Add Comment</h5>
-                      <Form onSubmit={handleSubmit}>
-                        <Form.Group controlId="blog-form" className="mt-3">
-                          <Form.Label>Name</Form.Label>
-                          <Form.Control
-                            size="sm"
-                            placeholder="Name"
-                            value={commentName}
-                            onChange={(e) => {
-                              setCommentName(e.target.value);
-                            }}
-                          />
-                        </Form.Group>
-                        <Form.Group controlId="blog-form" className="mt-3">
-                          <Form.Label>Comment</Form.Label>
-                          <Form.Control
-                            size="sm"
-                            placeholder="Comment"
-                            value={commentText}
-                            onChange={(e) => {
-                              setCommentText(e.target.value);
-                            }}
-                          />
-                        </Form.Group>
-                        {loading && (
-                          <Spinner animation="border" role="status"></Spinner>
-                        )}
-                        {!loading && errorOccurred && (
-                          <Alert variant="danger">
-                            Error occurred when posting
-                          </Alert>
-                        )}
-                        {!loading && !errorOccurred && postSuccess && (
-                          <Alert variant="success">Post successful!</Alert>
-                        )}
-                        <Form.Group className="d-flex mt-3 justify-content-end">
-                          <Button type="reset" size="lg" variant="outline-dark">
-                            Reset
-                          </Button>
-                          <Button
-                            type="submit"
-                            size="lg"
-                            variant="dark"
-                            style={{
-                              marginLeft: "1em",
-                            }}
+            <div>
+              <h4>Comments</h4>
+              <div style={{ background: "white", borderRadius: "5px" }}>
+                <Container className="p-1">
+                  {blog.comments && (
+                    <>
+                      {blog.comments.map((comment, i) => (
+                        <Row key={i} className="my-2 w-75 d-flex">
+                          <div
+                            style={{ background: "white", borderRadius: "5px" }}
                           >
-                            Submit
-                          </Button>
-                        </Form.Group>
-                      </Form>
-                    </Row>
-                  </Container>
-                </div>
+                            {comment.name + ": " + comment.text}
+                          </div>
+
+                          <div>
+                            <EditComment
+                              blogId={blog._id}
+                              commentId={comment._id}
+                              getBlog={getBlog}
+                            />
+                            <DeleteComment
+                              blogId={blog._id}
+                              commentId={comment._id}
+                              getBlog={getBlog}
+                            />
+                          </div>
+                        </Row>
+                      ))}
+                    </>
+                  )}
+                  <Row style={{ background: "white", borderRadius: "5px" }}>
+                    <h5 className="mt-5">Add Comment</h5>
+                    <Form onSubmit={handleSubmit}>
+                      <Form.Group controlId="blog-form" className="mt-3">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control
+                          size="sm"
+                          placeholder="Name"
+                          value={commentName}
+                          onChange={(e) => {
+                            setCommentName(e.target.value);
+                          }}
+                        />
+                      </Form.Group>
+                      <Form.Group controlId="blog-form" className="mt-3">
+                        <Form.Label>Comment</Form.Label>
+                        <Form.Control
+                          size="sm"
+                          placeholder="Comment"
+                          value={commentText}
+                          onChange={(e) => {
+                            setCommentText(e.target.value);
+                          }}
+                        />
+                      </Form.Group>
+                      {loading && (
+                        <Spinner animation="border" role="status"></Spinner>
+                      )}
+                      {!loading && errorOccurred && (
+                        <Alert variant="danger">
+                          Error occurred when posting
+                        </Alert>
+                      )}
+                      {!loading && !errorOccurred && postSuccess && (
+                        <Alert variant="success">Post successful!</Alert>
+                      )}
+                      <Form.Group className="d-flex mt-3 justify-content-end">
+                        <Button type="reset" size="lg" variant="outline-dark">
+                          Reset
+                        </Button>
+                        <Button
+                          type="submit"
+                          size="lg"
+                          variant="dark"
+                          style={{
+                            marginLeft: "1em",
+                          }}
+                        >
+                          Submit
+                        </Button>
+                      </Form.Group>
+                    </Form>
+                  </Row>
+                </Container>
               </div>
-            )}
+            </div>
           </>
         )}
       </Container>
