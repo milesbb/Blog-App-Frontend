@@ -95,6 +95,8 @@ const Blog = ({ authorsArray }) => {
       );
       if (blogPostPdfResponse.ok) {
         console.log("pdf successfully created");
+        const decodedResp = await blogPostPdfResponse.json()
+        console.log(decodedResp)
       }
     } catch (error) {
       console.log(error);
