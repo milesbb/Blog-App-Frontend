@@ -166,7 +166,7 @@ const Blog = ({ authorsArray }) => {
                 __html: blog.content,
               }}
             ></div>
-            <Button onClick={blogPostPdf}>Create Blog Post PDF</Button>
+            <a href={process.env.REACT_APP_BE_URL + "/blogPosts/" + blogId + "/pdf"}>Create Blog Post PDF</a>
             <div>
               <h4>Comments</h4>
               <div style={{ background: "white", borderRadius: "5px" }}>
