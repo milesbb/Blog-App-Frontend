@@ -12,7 +12,7 @@ import {
 import BlogList from "../../components/blog/blog-list/BlogList";
 import "./styles.css";
 
-const Home = ({ sendAuthorsArray }) => {
+const Home = () => {
   const [loading, setLoading] = useState(false);
   const [errorOccurred, setErrorOccured] = useState(false);
   const [authors, setAuthors] = useState([]);
@@ -29,7 +29,6 @@ const Home = ({ sendAuthorsArray }) => {
         const authorsLoaded = await response.json();
         console.log("LOADING AUTHORS");
         console.log(authorsLoaded);
-        sendAuthorsArray(authorsLoaded);
         setAuthors(authorsLoaded);
       } else {
         setErrorOccured(true);
@@ -46,7 +45,7 @@ const Home = ({ sendAuthorsArray }) => {
     setPostErrorOccurred(false);
     setPostLoading(true);
     const currentUserId = "juxkzs17l8wr9mq3";
-    console.log("starting to post author image")
+    console.log("starting to post author image");
     const postImgFormData = new FormData();
     if (imgData !== null) {
       postImgFormData.append("avatar", imgData);
@@ -54,13 +53,16 @@ const Home = ({ sendAuthorsArray }) => {
 
     try {
       const imgPostResponse = await fetch(
-        process.env.REACT_APP_BE_URL + "/authors/" + currentUserId + "/cloudinary",
+        process.env.REACT_APP_BE_URL +
+          "/authors/" +
+          currentUserId +
+          "/cloudinary",
         {
           method: "POST",
           body: postImgFormData,
           headers: {
-            "X-API-KEY": "392859513733232"
-          }
+            "X-API-KEY": "392859513733232",
+          },
         }
       );
       if (imgPostResponse.ok) {
@@ -120,32 +122,31 @@ const Home = ({ sendAuthorsArray }) => {
           <h4>Authors</h4>
           <Container className="mb-3">
             <Row>
-              {authors.map((author, i) => (
-                <Col md={3} key={i} style={{ listStyleType: "none" }}>
-                  <div
-                    className="p-2 my-2 d-flex"
-                    style={{ background: "gray", borderRadius: "5px" }}
-                  >
-                    <div className="">
-                      <Image
-                        alt="profile pic"
-                        style={{
-                          width: "2rem",
-                          height: "2rem",
-                          borderRadius: "50%",
-                        }}
-                        src={
-                          author.avatar
-                        }
-                      />
-                    </div>
+              {authors &&
+                authors.map((author, i) => (
+                  <Col md={3} key={i} style={{ listStyleType: "none" }}>
+                    <div
+                      className="p-2 my-2 d-flex"
+                      style={{ background: "gray", borderRadius: "5px" }}
+                    >
+                      <div className="">
+                        <Image
+                          alt="profile pic"
+                          style={{
+                            width: "2rem",
+                            height: "2rem",
+                            borderRadius: "50%",
+                          }}
+                          src={author.avatar}
+                        />
+                      </div>
 
-                    <div className="text-white">
-                      {author.name + " " + author.surname}
+                      <div className="text-white">
+                        {author.name + " " + author.surname}
+                      </div>
                     </div>
-                  </div>
-                </Col>
-              ))}
+                  </Col>
+                ))}
             </Row>
           </Container>
         </>

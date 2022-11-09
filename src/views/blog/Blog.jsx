@@ -15,7 +15,7 @@ import posts from "../../data/posts.json";
 import DeleteComment from "./deleteComment";
 import EditComment from "./editComment";
 import "./styles.css";
-const Blog = ({ authorsArray }) => {
+const Blog = () => {
   const params = useParams();
   const blogId = params.id;
 
@@ -146,7 +146,7 @@ const Blog = ({ authorsArray }) => {
 
             <div className="blog-details-container">
               <div className="blog-details-author">
-                <BlogAuthor author={blog.author} authorsArray={authorsArray} />
+                <BlogAuthor authors={blog.authors}/>
               </div>
               <div className="blog-details-info">
                 <div>{blog.createdAt}</div>
