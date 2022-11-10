@@ -1,5 +1,7 @@
 # React Blog App
 
-Link to backend:
+Frontend for react blog app, connected to mongoDB database for CRUD actions with blog posts.
 
-https://github.com/milesbb/BE-WK2-D2-BE-Cloud.git
+User authentication using tokens and google OAuth
+
+[Link to backend](https://github.com/milesbb/Blog-Backend-With-Auth)
