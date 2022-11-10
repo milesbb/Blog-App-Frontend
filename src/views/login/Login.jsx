@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, Button, Form, Spinner } from "react-bootstrap";
+import { Alert, Button, Form, Image, Spinner } from "react-bootstrap";
 import ReactDOM from "react-dom";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -10,6 +10,15 @@ const Login = ({ setLoggedIn, loggedIn }) => {
   const [errorOccurred, setErrorOccurred] = useState(false);
   const [postSuccess, setPostSuccess] = useState(false);
   const navigate = useNavigate();
+
+  const signInWithGoogle = async () => {
+    try {
+        console.log("GOOGLE LOGIN")
+        const response = await fetch(process.env.REACT_APP_BE_URL + "/authors/auth/google")
+    } catch (error) {
+        
+    }
+  }
 
   const registerAuthor = async () => {
     try {
@@ -140,6 +149,7 @@ const Login = ({ setLoggedIn, loggedIn }) => {
           <Button variant="primary" type="submit">
             Submit
           </Button>
+          <Image className="ml-2 pe-auto" style={{width: "11rem"}} onClick={signInWithGoogle} src="https://res.cloudinary.com/dycynydei/image/upload/v1668093313/btn_google_signin_light_normal_web_2x_ouundr.png"/>
         </Form>
         <div className="mt-4">
           <Link to="/signup">...or create an account!</Link>
