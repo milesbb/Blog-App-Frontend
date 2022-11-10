@@ -149,7 +149,7 @@ const Login = ({ setLoggedIn, loggedIn }) => {
           <Button variant="primary" type="submit">
             Submit
           </Button>
-          <Image className="ml-2 pe-auto" style={{width: "11rem"}} onClick={signInWithGoogle} src="https://res.cloudinary.com/dycynydei/image/upload/v1668093313/btn_google_signin_light_normal_web_2x_ouundr.png"/>
+          <Image className="ml-2" style={{width: "11rem", cursor: "pointer"}} onClick={signInWithGoogle} src="https://res.cloudinary.com/dycynydei/image/upload/v1668093313/btn_google_signin_light_normal_web_2x_ouundr.png"/>
         </Form>
         <div className="mt-4">
           <Link to="/signup">...or create an account!</Link>
