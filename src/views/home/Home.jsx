@@ -46,6 +46,9 @@ const Home = () => {
     setPostSuccess(false);
     setPostErrorOccurred(false);
     setPostLoading(true);
+
+    const accessToken = localStorage.getItem("accessToken")
+
     const currentUserId = "juxkzs17l8wr9mq3";
     console.log("starting to post author image");
     const postImgFormData = new FormData();
@@ -63,6 +66,7 @@ const Home = () => {
           method: "POST",
           body: postImgFormData,
           headers: {
+            "Authorization": `Basic ${accessToken}`,
             "X-API-KEY": "392859513733232",
           },
         }

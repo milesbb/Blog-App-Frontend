@@ -3,13 +3,13 @@ import { Alert, Button, Form, Spinner } from "react-bootstrap";
 import ReactDOM from "react-dom";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ setLoggedIn, loggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorOccurred, setErrorOccurred] = useState(false);
   const [postSuccess, setPostSuccess] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const registerAuthor = async () => {
     try {
@@ -41,7 +41,11 @@ const Login = () => {
         localStorage.setItem("accessToken", tokens.accessToken);
         localStorage.setItem("refreshToken", tokens.refreshToken);
 
-        navigate("/home")
+    
+        setLoggedIn(true);
+        console.log("I'm logged in!")
+
+        navigate("/home");
 
         setPostSuccess(true);
       } else {

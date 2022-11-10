@@ -9,11 +9,13 @@ import Login from "./views/login/Login";
 import SignUp from "./views/login/SignUp";
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false)
+
   return (
     <Router>
-      <NavBar />
+      <NavBar setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
       <Routes>
-        <Route path="/" exact element={<Login />} />
+        <Route path="/" exact element={<Login setLoggedIn={setLoggedIn} />} />
         <Route path="/signup" exact element={<SignUp />} />
         <Route path="/home" exact element={<Home />} />
         <Route path="/blog/:id" element={<Blog />} />
