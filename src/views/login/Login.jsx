@@ -13,12 +13,11 @@ const Login = ({ setLoggedIn, loggedIn }) => {
 
   const signInWithGoogle = async () => {
     try {
-        console.log("GOOGLE LOGIN")
-        const response = await fetch(process.env.REACT_APP_BE_URL + "/authors/auth/google")
-    } catch (error) {
-        
-    }
-  }
+      window.location.replace(
+        process.env.REACT_APP_BE_URL + "/authors/auth/google"
+      );
+    } catch (error) {}
+  };
 
   const registerAuthor = async () => {
     try {
@@ -50,9 +49,8 @@ const Login = ({ setLoggedIn, loggedIn }) => {
         localStorage.setItem("accessToken", tokens.accessToken);
         localStorage.setItem("refreshToken", tokens.refreshToken);
 
-    
         setLoggedIn(true);
-        console.log("I'm logged in!")
+        console.log("I'm logged in!");
 
         navigate("/home");
 
@@ -149,7 +147,12 @@ const Login = ({ setLoggedIn, loggedIn }) => {
           <Button variant="primary" type="submit">
             Submit
           </Button>
-          <Image className="ml-2" style={{width: "11rem", cursor: "pointer"}} onClick={signInWithGoogle} src="https://res.cloudinary.com/dycynydei/image/upload/v1668093313/btn_google_signin_light_normal_web_2x_ouundr.png"/>
+          <Image
+            className="ml-2"
+            style={{ width: "11rem", cursor: "pointer" }}
+            onClick={signInWithGoogle}
+            src="https://res.cloudinary.com/dycynydei/image/upload/v1668093313/btn_google_signin_light_normal_web_2x_ouundr.png"
+          />
         </Form>
         <div className="mt-4">
           <Link to="/signup">...or create an account!</Link>

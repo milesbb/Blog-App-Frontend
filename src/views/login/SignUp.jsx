@@ -185,7 +185,7 @@ const SignUp = () => {
             <Alert variant="success">Profile created! Now try logging in!</Alert>
 
           )}
-          <Button variant="primary" type="submit">
+          <Button className="mt-2" variant="primary" type="submit">
             Submit
           </Button>
         </Form>
